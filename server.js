@@ -35,7 +35,7 @@ app.post('/api/scan', async (req, res) => {
   if (!process.env.AI_API_KEY) return res.json({ credits: user.credits, result: '🎭 [ТЕСТ] Искренность 88%.' });
   try {
     const ai = await axios.post('https://proxyapi.ru', {
-      model: 'deepseek/deepseek-v4.1-flash-1017',
+      model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: `Проверь видео на ложь: ${req.body.url}` }]
     }, { headers: { Authorization: `Bearer ${process.env.AI_API_KEY}` } });
     res.json({ credits: user.credits, result: ai.data.choices[0].message.content });
